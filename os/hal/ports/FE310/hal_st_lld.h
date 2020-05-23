@@ -86,7 +86,7 @@ extern "C" {
  */
 static inline systime_t st_lld_get_counter(void) {
 
-  int high, low, temp;
+  uint32_t high, low, temp;
   do
   {
     high = RISCV_MTIMEH;

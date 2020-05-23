@@ -501,7 +501,7 @@ static inline void port_wait_for_interrupt(void) {
  */
 static inline rtcnt_t port_rt_get_counter_value(void) {
 
-  int high, low, temp;
+  uint32_t high, low, temp;
   do
   {
     RISCV_CSR_READ(high, mcycleh);
