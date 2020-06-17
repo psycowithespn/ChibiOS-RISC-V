@@ -44,7 +44,11 @@
  * RTOS-specific context offset.
  */
 #if defined(_CHIBIOS_RT_CONF_)
+#if CH_CFG_USE_REGISTRY
+#define CONTEXT_OFFSET  20
+#else
 #define CONTEXT_OFFSET  12
+#endif
 #elif defined(_CHIBIOS_NIL_CONF_)
 #define CONTEXT_OFFSET  0
 #else
@@ -199,7 +203,7 @@ _port_switch_from_isr:
 
 _port_exit_from_isr:
                 // Defer-enable interrupts using mpie with mret.
-                // Also orce mpp to M-Mode (empirically determined to be 3).
+                // Also force mpp to M-Mode (empirically determined to be 3).
                 li      a0, 0x1880
                 csrs    mstatus, a0
 
