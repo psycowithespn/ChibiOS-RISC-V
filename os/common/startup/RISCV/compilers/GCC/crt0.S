@@ -127,7 +127,7 @@ _crt0_entry:
                 jal     ra, __early_init
 
 #if CRT0_INIT_STACKS == TRUE
-                la      a0, CRT0_STACKS_FILL_PATTERN
+                li      a0, CRT0_STACKS_FILL_PATTERN
                 /* Main Stack initialization. Note, it assumes that the
                    stack size is a multiple of 4 so the linker file must
                    ensure this.*/
