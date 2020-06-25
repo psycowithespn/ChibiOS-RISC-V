@@ -458,6 +458,7 @@
 
 /* Various helpers.*/
 #include "plic.h"
+#include "fe310_isr.h"
 
 #ifdef __cplusplus
 extern "C" {

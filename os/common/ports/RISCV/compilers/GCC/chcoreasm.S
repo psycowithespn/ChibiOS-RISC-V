@@ -203,7 +203,7 @@ _port_switch_from_isr:
 
 _port_exit_from_isr:
                 // Defer-enable interrupts using mpie with mret.
-                // Also force mpp to M-Mode (empirically determined to be 3).
+                // Also force mpp to M-Mode.
                 li      a0, 0x1880
                 csrs    mstatus, a0
 
@@ -226,64 +226,6 @@ _port_exit_from_isr:
 
                 addi    sp, sp, 80
                 mret
-
-/*--------------------------------------------------------------------------*
- * External interrupt handling code.
- *
- * This is the core external (peripheral) interrupt handler with
- * claim / complete functionality.
- *--------------------------------------------------------------------------*/
-
-.equ            PLIC_CLAIM_COMPLETE, 0x0C200004
-
-                .globl VectorMEI
-VectorMEI:
-                // Create stack space.
-                addi    sp, sp, -16
-
-                // Save RA.
-                sw      ra, 0(sp)
-
-                // Claim an interrupt.
-                li      a1, PLIC_CLAIM_COMPLETE
-                lw      a2, 0(a1)
-
-                // Default to completed with no preemption required.
-                li      a0, 0
-
-                // Zero is valid and means no interrupt claimed, just return.
-                beq     zero, a2, _VectorMEIRet
-
-_handleInterrupt:
-                // Index into the interrupt table.
-                la      a3, InterruptTable
-                slli    a4, a2, 2
-                add     a5, a3, a4
-                lw      a6, 0(a5)
-
-                // Save the claim address and id.
-                sw      a1, 4(sp)
-                sw      a2, 8(sp)
-
-                // Jump into the interurpt handler.
-                jalr    ra, a6
-
-                // Load the claim address and id.
-                lw      a1, 4(sp)
-                lw      a2, 8(sp)
-
-                // Mark the interrupt as complete and return.
-                // The handler populated the return variable already.
-                sw      a2, 0(a1)
-
-_VectorMEIRet:
-                // Load RA.
-                lw      ra, 0(sp)
-
-                // Free stack space
-                addi    sp, sp, 16
-                ret
-
 
 #endif /* !defined(__DOXYGEN__) */
 

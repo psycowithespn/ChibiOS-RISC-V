@@ -127,12 +127,15 @@ static void notify1(io_queue_t *qp) {
 /*===========================================================================*/
 
 #if FE310_SERIAL_USE_UART0 || defined(__DOXYGEN__)
+#if !defined(FE310_UART0_HANDLER)
+#error "FE310_UART0_HANDLER not defined"
+#endif
 /**
  * @brief   USART0 interrupt handler.
  *
  * @isr
  */
-OSAL_IRQ_HANDLER(Interrupt3) {
+OSAL_IRQ_HANDLER(FE310_UART0_HANDLER) {
 
   OSAL_IRQ_PROLOGUE();
 
@@ -143,12 +146,15 @@ OSAL_IRQ_HANDLER(Interrupt3) {
 #endif
 
 #if FE310_SERIAL_USE_UART1 || defined(__DOXYGEN__)
+#if !defined(FE310_UART1_HANDLER)
+#error "FE310_UART1_HANDLER not defined"
+#endif
 /**
  * @brief   USART1 interrupt handler.
  *
  * @isr
  */
-OSAL_IRQ_HANDLER(Interrupt4) {
+OSAL_IRQ_HANDLER(FE310_UART1_HANDLER) {
 
   OSAL_IRQ_PROLOGUE();
 
@@ -205,14 +211,14 @@ void sd_lld_start(SerialDriver *sdp, const SerialConfig *config) {
 #if FE310_SERIAL_USE_UART0 == TRUE
     else if (sdp == &SD0)
     {
-      plicEnableInterrupt(3, 1);
+      plicEnableInterrupt(FE310_UART0_NUMBER, 1);
     }
 #endif
 
 #if FE310_SERIAL_USE_UART1 == TRUE
     else if (sdp == &SD1)
     {
-      plicEnableInterrupt(4, 1);
+      plicEnableInterrupt(FE310_UART1_NUMBER, 1);
     }
 #endif
   }
@@ -260,14 +266,14 @@ void sd_lld_stop(SerialDriver *sdp) {
 #if FE310_SERIAL_USE_UART0 == TRUE
     else if (sdp == &SD0)
     {
-      plicDisableInterrupt(3);
+      plicDisableInterrupt(FE310_UART0_NUMBER);
     }
 #endif
 
 #if FE310_SERIAL_USE_UART1 == TRUE
     else if (sdp == &SD1)
     {
-      plicDisableInterrupt(4);
+      plicDisableInterrupt(FE310_UART1_NUMBER);
     }
 #endif
   }
