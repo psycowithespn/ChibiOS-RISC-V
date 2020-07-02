@@ -28,7 +28,7 @@
 #ifndef HAL_LLD_H
 #define HAL_LLD_H
 
-#include "fe310_prci.h"
+#include "riscv_registry.h"
 
 /*===========================================================================*/
 /* Driver constants.                                                         */
@@ -459,6 +459,7 @@
 /* Various helpers.*/
 #include "plic.h"
 #include "fe310_isr.h"
+#include "fe310_prci.h"
 
 #ifdef __cplusplus
 extern "C" {

@@ -25,15 +25,7 @@
 #ifndef _RISCVPARAMS_H_
 #define _RISCVPARAMS_H_
 
-/**
- * @brief PLIC parameters
- */
-#define RISCV_HAS_PLIC
-#define PLIC_BASE           0x0C000000
-#define PLIC_MAX_PRIO       7
-#define PLIC_MAX_KERN_PRIO  5
-#define PLIC_LAST_IRQ       52
-#define PLIC_NUM_CONTEXTS   1
+// Nothing to include for now.
 
 #endif /* _RISCVPARAMS_H_ */
 
