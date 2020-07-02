@@ -27,15 +27,17 @@
 #ifndef HAL_ST_LLD_H
 #define HAL_ST_LLD_H
 
+// TODO(pseidel): Assumes only 1 hart
+
 /*===========================================================================*/
 /* Driver constants.                                                         */
 /*===========================================================================*/
 
-#define RISCV_MTIMECMP0 (*(volatile uint32_t *) 0x2004000)
-#define RISCV_MTIMECMPH0 (*(volatile uint32_t *) 0x2004004)
+#define RISCV_MTIMECMP0 (*(volatile uint32_t *) (CLINT_BASE + CLINT_MTIMECMP_OFFSET + 0))
+#define RISCV_MTIMECMPH0 (*(volatile uint32_t *) (CLINT_BASE + CLINT_MTIMECMP_OFFSET + 4))
 
-#define RISCV_MTIME (*(volatile uint32_t *) 0x200BFF8)
-#define RISCV_MTIMEH (*(volatile uint32_t *) 0x200BFFC)
+#define RISCV_MTIME (*(volatile uint32_t *) (CLINT_BASE + CLINT_MTIME_OFFSET + 0))
+#define RISCV_MTIMEH (*(volatile uint32_t *) (CLINT_BASE + CLINT_MTIME_OFFSET + 4))
 
 /*===========================================================================*/
 /* Driver pre-compile time settings.                                         */
@@ -44,6 +46,10 @@
 /*===========================================================================*/
 /* Derived constants and error checks.                                       */
 /*===========================================================================*/
+
+#ifndef RISCV_HAS_PLIC
+#error "clint/hal_st_lld.h requires the device to have a CLINT"
+#endif
 
 #if CH_CFG_ST_RESOLUTION != 64
 #error "RISC-V requires CH_CFG_ST_RESOLUTION == 64"

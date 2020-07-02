@@ -15,7 +15,7 @@
 */
 
 /**
- * @file    common/RISCV/plic.c
+ * @file    common/RISCV/plic/plic.c
  * @brief   RISC-V PLIC support code.
  *
  * @addtogroup COMMON_RISCV_PLIC

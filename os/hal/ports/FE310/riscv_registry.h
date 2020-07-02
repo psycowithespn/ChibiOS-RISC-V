@@ -33,13 +33,20 @@
  * @name    FE310-G002 capabilities
  * @{
  */
+/* CLINT parameters */
+#define RISCV_HAS_CLINT
+#define CLINT_BASE              0x02000000
+#define CLINT_MSIP_OFFSET       0x0
+#define CLINT_MTIME_OFFSET      0xBFF8
+#define CLINT_MTIMECMP_OFFSET   0x4000
+
 /* PLIC parameters */
 #define RISCV_HAS_PLIC
-#define PLIC_BASE           0x0C000000
-#define PLIC_MAX_PRIO       7
-#define PLIC_MAX_KERN_PRIO  5
-#define PLIC_LAST_IRQ       52
-#define PLIC_NUM_CONTEXTS   1
+#define PLIC_BASE               0x0C000000
+#define PLIC_MAX_PRIO           7
+#define PLIC_MAX_KERN_PRIO      5
+#define PLIC_LAST_IRQ           52
+#define PLIC_NUM_CONTEXTS       1
 /** @} */
 
 #endif /* RISCV_REGISTRY_H */

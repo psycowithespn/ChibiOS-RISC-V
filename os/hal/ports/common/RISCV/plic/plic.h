@@ -15,7 +15,7 @@
 */
 
 /**
- * @file    common/RISCV/plic.h
+ * @file    common/RISCV/plic/plic.h
  * @brief   RISC-V PLIC support macros and structures.
  *
  * @addtogroup COMMON_RISCV_PLIC
