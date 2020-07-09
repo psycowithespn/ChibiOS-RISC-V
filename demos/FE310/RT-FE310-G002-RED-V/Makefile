@@ -84,7 +84,7 @@ DEPDIR   := ./.dep
 # Licensing files.
 include $(CHIBIOS)/os/license/license.mk
 # Startup files.
-include $(CHIBIOS_RV)/os/common/startup/RISCV/compilers/GCC/mk/startup_fe310.mk
+include $(CHIBIOS_RV)/os/common/startup/RISCV-CLINT/compilers/GCC/mk/startup_fe310.mk
 # HAL-OSAL files (optional).
 include $(CHIBIOS)/os/hal/hal.mk
 include $(CHIBIOS_RV)/os/hal/ports/FE310/platform.mk
@@ -92,7 +92,7 @@ include $(CHIBIOS_RV)/os/hal/ports/FE310/platform.mk
 include $(CHIBIOS)/os/hal/osal/rt-nil/osal.mk
 # RTOS files (optional).
 include $(CHIBIOS)/os/rt/rt.mk
-include $(CHIBIOS_RV)/os/common/ports/RISCV/compilers/GCC/mk/port.mk
+include $(CHIBIOS_RV)/os/common/ports/RISCV-CLINT/compilers/GCC/mk/port.mk
 # Auto-build files in ./source recursively.
 include $(CHIBIOS)/tools/mk/autobuild.mk
 # Other files (optional).
@@ -160,7 +160,7 @@ ULIBS =
 # Common rules
 #
 
-RULESPATH = $(CHIBIOS_RV)/os/common/startup/RISCV/compilers/GCC/mk
+RULESPATH = $(CHIBIOS_RV)/os/common/startup/RISCV-CLINT/compilers/GCC/mk
 include $(RULESPATH)/riscv-none-embed.mk
 include $(RULESPATH)/rules.mk
 
