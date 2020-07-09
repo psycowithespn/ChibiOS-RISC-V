@@ -260,12 +260,12 @@ struct port_context {
 /**
  * @brief   Priority level verification macro.
  */
-#define PORT_IRQ_IS_VALID_PRIORITY(n) false
+#define PORT_IRQ_IS_VALID_PRIORITY(n) true
 
 /**
  * @brief   Priority level verification macro.
  */
-#define PORT_IRQ_IS_VALID_KERNEL_PRIORITY(n) false
+#define PORT_IRQ_IS_VALID_KERNEL_PRIORITY(n) true
 
 /**
  * @brief   IRQ prologue code.
